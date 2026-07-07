@@ -96,10 +96,7 @@ with open("images/img3.jpeg", "rb") as f:
 with open("images/img4.jpeg", "rb") as f:
     encoded4 = base64.b64encode(f.read()).decode()
 
-with open("images/img5.jpeg", "rb") as f:
-    encoded5 = base64.b64encode(f.read()).decode()
-
-img_list = [encoded1, encoded2, encoded3, encoded4, encoded5]
+img_list = [encoded1, encoded2, encoded3, encoded4]
 
 
 
@@ -115,8 +112,7 @@ def slide_show() :
     <script>
     const images = ["data:image/jpeg;base64,{img_list[1]}", 
     "data:image/jpeg;base64,{img_list[2]}", 
-    "data:image/jpeg;base64,{img_list[3]}", 
-    "data:image/jpeg;base64,{img_list[4]}"];
+    "data:image/jpeg;base64,{img_list[3]}"];
     let index = 0;
 
     const img = document.getElementById("slider");
