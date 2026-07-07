@@ -96,47 +96,50 @@ with open("images/img3.jpeg", "rb") as f:
 with open("images/img4.jpeg", "rb") as f:
     encoded4 = base64.b64encode(f.read()).decode()
 
-img_list = [encoded1, encoded2, encoded3, encoded4]
+with open("images/img5.jpeg", "rb") as f:
+    encoded5 = base64.b64encode(f.read()).decode()
+
+img_list = [encoded1, encoded2, encoded3, encoded4, encoded5]
 
 
 
 def slide_show() :
-    fade = f"""<img id="slider" src="data:image/jpeg;base64,{img_list[0]}" style="width:800px; opacity:0;">
+    fade = f"""
+    <img id="slider" src="data:image/jpeg;base64,{img_list[0]}" 
+    style="width:100%; max-width:500px; height:auto; opacity:0; display:block; margin:auto;">
 
     <style>
     #slider {{
         transition: opacity 1.5s ease-in-out;
+        border-radius: 10px;
     }}
     </style>
 
     <script>
-    const images = ["data:image/jpeg;base64,{img_list[1]}", 
-    "data:image/jpeg;base64,{img_list[2]}", 
-    "data:image/jpeg;base64,{img_list[3]}"];
-    let index = 0;
+    const images = [
+        "data:image/jpeg;base64,{img_list[1]}",
+        "data:image/jpeg;base64,{img_list[2]}",
+        "data:image/jpeg;base64,{img_list[3]}",
+        "data:image/jpeg;base64,{img_list[4]}"
+    ];
 
+    let index = 0;
     const img = document.getElementById("slider");
 
     function showNextImage() {{
-        // Fade out
         img.style.opacity = 0;
 
         setTimeout(() => {{
-            // Change image after fade out
             index = (index + 1) % images.length;
             img.src = images[index];
-
-            // Fade in
             img.style.opacity = 1;
-        }}, 1500); // match fade-out time
+        }}, 1500);
     }}
 
-    // Initial fade-in
     setTimeout(() => {{
         img.style.opacity = 1;
     }}, 200);
 
-    // Loop every 4 seconds
     setInterval(showNextImage, 4000);
     </script>
     """
